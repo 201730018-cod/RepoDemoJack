@@ -1,3 +1,6 @@
 esto es una prueba de texto
+<<<<<<< HEAD
 "Agregamos esta segunda linea"
 "Tercer version del archivo Jack brandon espinosa"
+Tab
+
