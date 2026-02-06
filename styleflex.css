@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    font-size: 12px;
+}
+
+h1 {
+    text-align: center  ;
+    font-size: 4em;
+    opacity: 1;
+}
+
+.container {
+    border: 5px solid black;
+   /* width: 1600px;*/
+    height: 800px;
+    margin: 2rem auto;
+    display: flex;
+   /* flex-direction: column;
+    flex-wrap: wrap-reverse;*/
+    flex-flow: row wrap;
+}
+
+.box {
+    flex: 1;
+    height: 200px;
+    width: 200px;
+    font-size: 4rem;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.uno{
+    background-color: chocolate;
+
+}
+
+.dos {
+    background-color: blueviolet   ;
+    flex: 2;
+
+}
+
+.tres {
+    background-color: coral;
+}
+
+.cuatro {
+    background-color: cyan;
+
+}
+
+.cinco{
+    background-color: darkgoldenrod;
+
+}
+
+.seis {
+    background-color: darkcyan;
+
+}
