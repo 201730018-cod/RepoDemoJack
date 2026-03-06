@@ -1,0 +1,16 @@
+{
+  "name": "proyectonode01",
+  "version": "1.0.0",
+  "description": "introduccion a nodejs para crear backend por jack",
+  "license": "ISC",
+  "author": "Jack Espinosa Nuñez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
