@@ -1,0 +1,105 @@
+const API = "http://localhost:3600/api/usuarios";
+
+const tabla = document.getElementById("tablaUsuarios");
+const form = document.getElementById("formulario");
+
+async function cargarUsuarios(){
+
+    const res = await fetch(API);
+    const data = await res.json();
+    tabla.innerHTML="";
+
+    data.forEach(u => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+        <td>${u.nombre}</td>
+        <td>${u.email}</td>
+        <td>${u.genero}</td>
+        <td>${u.plataformas.join(", ")}</td>
+        `;
+
+        fila.onclick = () => seleccionarUsuario(u);
+
+        tabla.appendChild(fila);
+
+    });
+
+}
+
+function obtenerPlataformas(){
+    const checks = document.querySelectorAll(".plataforma");
+    let seleccion = [];
+    checks.forEach(c => {
+        if(c.checked){
+        seleccion.push(c.value);
+        }
+    });
+    return seleccion;
+}
+
+function seleccionarUsuario(u){
+
+    document.getElementById("id").value = u._id;
+    document.getElementById("nombre").value = u.nombre;
+    document.getElementById("email").value = u.email;
+    document.getElementById("genero").value = u.genero;
+
+    const checks = document.querySelectorAll(".plataforma");
+
+    checks.forEach(c => {
+
+        c.checked = u.plataformas.includes(c.value);
+
+    });
+
+}
+
+form.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const id = document.getElementById("id").value;
+    console.log("ID al hacer submit:", id); // ← agrega esto
+
+
+
+    const usuario = {
+
+        nombre: document.getElementById("nombre").value,
+        email: document.getElementById("email").value,
+        genero: document.getElementById("genero").value,
+        plataformas: obtenerPlataformas()
+
+    };
+    console.log("Usuario a enviar:", usuario); // ← y esto
+
+
+    if(id){
+        console.log("Ejecutando PUT..."); // ← y esto
+
+        await fetch(API + "/" + id,{
+            method:"PUT",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(usuario)
+        });
+
+    }else{
+        console.log("Ejecutando POST..."); // ← y esto
+
+        await fetch(API,{
+            method:"POST",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(usuario)
+        });
+
+    } //fin del if
+
+    form.reset();
+
+    document.getElementById("id").value="";
+
+    cargarUsuarios();
+
+});
+
+cargarUsuarios();
